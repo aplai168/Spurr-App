@@ -19,7 +19,7 @@ var dbConnection = mysql.createConnection({
   host: '',
   user: 'root',
   password: '',
-  database: '',
+  database: 'secrets',
 });
 dbConnection.connect((err) => {
   if (err) {
@@ -30,25 +30,28 @@ dbConnection.connect((err) => {
 });
 
 
-// dbConnection.query('INSERT INTO users (username) VALUE ("liv")', function(err, rows, fields) {
-//   if (!err)
-//     console.log('The solution is: ', rows);
-//   else
-//     console.log('Error while performing Query.' + err);
-// });
-// dbConnection.query('SELECT * from users', function(err, rows, fields) {
-//   if (!err)
-//     console.log('The solution is: ', rows);
-//   else
-//     console.log('Error while performing Query.' + err);
-// });
+dbConnection.query('INSERT INTO users (username) VALUE ("liv")', function(err, rows, fields) {
+  if (!err)
+    console.log('The solution is: ');
+  else
+    console.log('Error while performing Query.' + err);
+});
+dbConnection.query('SELECT * from users', function(err, rows, fields) {
+  if (!err)
+    console.log('The solution is: ');
+  else
+    console.log('Error while performing Query.' + err);
+});
 // dbConnection.end(err =>
 //   console.log('connection ended gracefully')
 // );
 app.get('/', (req, res) => {
   res.send('hello');
 });
-
+app.post('/class/users', (req, res) => {
+  var username = req.body.username;
+  res.send(username);
+});
 
 
 // connection.connect();
